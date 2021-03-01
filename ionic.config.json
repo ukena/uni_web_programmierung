@@ -1,0 +1,7 @@
+{
+  "name": "uni",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
