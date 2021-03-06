@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Ionic App</title>
-
+    <link rel="stylesheet" type="text/css" href="map.css"></link>
     <base href="/" />
 
     <meta name="color-scheme" content="light dark" />
@@ -22,9 +22,66 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ionic App" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+    <script type="text/javascript" src="https://openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript" src="https://openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+    <script type="text/javascript" src="tom.js"></script>
+     
+    <script type="text/javascript">
+    //<![CDATA[
+    
+    var map;
+    var layer_mapnik;
+    var layer_tah;
+    var layer_markers;
+    
+    function drawmap() {
+        // Popup und Popuptext mit evtl. Grafik
+        var popuptext="<font color=\"black\"><b>Thomas Heiles<br>Stra&szlig;e 123<br>54290 Trier</b><p><img src=\"test.jpg\" width=\"180\" height=\"113\"></p></font>";
+    
+        OpenLayers.Lang.setCode('de');
+        
+        // Position und Zoomstufe der Karte
+        var lon = 6.641389;
+        var lat = 49.756667;
+        var zoom = 7;
+    
+        map = new OpenLayers.Map('map', {
+            projection: new OpenLayers.Projection("EPSG:900913"),
+            displayProjection: new OpenLayers.Projection("EPSG:4326"),
+            controls: [
+                new OpenLayers.Control.Navigation(),
+                new OpenLayers.Control.LayerSwitcher(),
+                new OpenLayers.Control.PanZoomBar()],
+            maxExtent:
+                new OpenLayers.Bounds(-20037508.34,-20037508.34,
+                                        20037508.34, 20037508.34),
+            numZoomLevels: 18,
+            maxResolution: 156543,
+            units: 'meters'
+        });
+    
+        layer_mapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
+        layer_markers = new OpenLayers.Layer.Markers("Address", { projection: new OpenLayers.Projection("EPSG:4326"), 
+                                                    visibility: true, displayInLayerSwitcher: false });
+    
+        map.addLayers([layer_mapnik, layer_markers]);
+        jumpTo(lon, lat, zoom);
+     
+        // Position des Markers
+        addMarker(layer_markers, 6.641389, 49.756667, popuptext);
+    
+    }
+    
+    //]]>
+        </script>
+
+
+
   </head>
 
-  <body>
+  <body onload="drawmap();">
     <div id="root"></div>
   </body>
 
