@@ -1,23 +1,22 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonFooter } from '@ionic/react';
+import React, { useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import MapContainer from '../components/MapContainer';
 import './Home.css';
 
 const Home: React.FC = () => {
+  const [searchText, setSearchText] = useState('');
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader collapse="condense">
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Containern-App</IonTitle>
+          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        
+        <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
+
         <MapContainer />
       </IonContent>
     </IonPage>

@@ -1,8 +1,11 @@
 import './MapContainer.css';
+import React, { useState } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonFooter } from '@ionic/react';
 
 interface ContainerProps { }
 
 const MapContainer: React.FC<ContainerProps> = () => {
+  const [searchText, setSearchText] = useState('');
   return (
     <div className="container">
      <div id="header">
