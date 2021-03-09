@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
-
+ 
         <MapContainer />
       </IonContent>
     </IonPage>
