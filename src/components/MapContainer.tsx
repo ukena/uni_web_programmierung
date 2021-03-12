@@ -1,5 +1,9 @@
 import './MapContainer.css';
 import React, { useState } from 'react';
+
+
+import { IonButton, IonIcon} from '@ionic/react';
+import { star } from 'ionicons/icons';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonFooter } from '@ionic/react';
 
 interface ContainerProps { }
